@@ -1,6 +1,5 @@
 import { createTheme, ThemeProvider } from '@mui/material';
 
-import HeaderLogin from "./components/HeaderLogin";
 import Login from "./components/Login";
 
 
@@ -16,7 +15,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <HeaderLogin />
         <Login />
       </div>
     </ThemeProvider>

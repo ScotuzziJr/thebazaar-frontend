@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Button, TextField, Typography, createTheme, ThemeProvider } from '@mui/material'
-import { Link } from "react-router-dom";
 
 import HeaderLogin from './HeaderLogin';
 
@@ -101,7 +100,7 @@ const Login = () => {
                         <Typography 
                             variant="p"
                         >
-                            Don't have an account? <Link to="registration">Join us</Link>
+                            Don't have an account? <a href='www.google.com'>Join us</a>
                         </Typography>
                     </Box>
                 </form>
