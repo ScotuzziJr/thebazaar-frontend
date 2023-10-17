@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Button, TextField, Typography, createTheme, ThemeProvider } from '@mui/material'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link, useNavigate } from "react-router-dom";
 
 import HeaderLogin from './HeaderLogin';
 
@@ -106,7 +107,7 @@ const Login = () => {
                         <Typography 
                             variant="p"
                         >
-                            Don't have an account? <a href='www.google.com'>Join us</a>
+                            Don't have an account? <Link to='/register'>Join us</Link>  
                         </Typography>
                     </Box>
                 </form>
