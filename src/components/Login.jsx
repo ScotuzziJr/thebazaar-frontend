@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Button, TextField, Typography, createTheme, ThemeProvider } from '@mui/material'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import HeaderLogin from './HeaderLogin';
 
@@ -34,7 +34,7 @@ const Login = () => {
                 if(res.status === 200) {
                     toast.success("Successfull login");
                 } else {
-                    toast.error("Login failed");
+                    toast.warn("Invalid credentials");
                 }
 
                 return res.json();
