@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Button, TextField, Typography, createTheme, ThemeProvider } from '@mui/material'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import HeaderLogin from './HeaderLogin';
 
@@ -16,25 +18,29 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const handleLogin = async () => {
-        const login = await fetch("http://localhost:8000/api/users/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                "username": username,
-                "password": password
+        try {
+            const login = await fetch("http://localhost:8000/api/users/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    "username": username,
+                    "password": password
+                })
             })
-        })
-        .then((res) => {
-            if(res.status === 200) {
-                alert("Successfull login");
-            } else {
-                alert("Login failed");
-            }
+            .then((res) => {
+                if(res.status === 200) {
+                    toast.success("Successfull login");
+                } else {
+                    toast.error("Login failed");
+                }
 
-            return res.json();
-        })
+                return res.json();
+            })
+        } catch(e) {
+            toast.error("Error connecting to API");
+        }
     }
 
     useEffect(() => {
@@ -96,7 +102,7 @@ const Login = () => {
                         >
                             Login
                         </Button>
-                        
+                        <ToastContainer />
                         <Typography 
                             variant="p"
                         >
