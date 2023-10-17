@@ -1,5 +1,7 @@
 import { Box, Button, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import HeaderLogin from './HeaderLogin';
 
@@ -10,26 +12,30 @@ const Register = () => {
 
 
     const handleRegistration = async () => {
-        const new_user = await fetch("http://localhost:8000/api/users/create", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                "username": username,
-                "email": email,
-                "password": password
+        try {
+            const new_user = await fetch("http://localhost:8000/api/users/create", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    "username": username,
+                    "email": email,
+                    "password": password
+                })
             })
-        })
-        .then((res) => {
-            if(res.status === 201) {
-                alert("Successfull registration");
-            } else {
-                alert("Registration failed");
-            }
+            .then((res) => {
+                if(res.status === 201) {
+                    toast.success("Successfull registration");
+                } else {
+                    toast.error("User already exists");
+                }
 
-            return res.json();
-        })
+                return res.json();
+            })
+        } catch(e) {
+            toast.error("Error connecting to API");
+        }
     }
 
     return (
@@ -95,6 +101,7 @@ const Register = () => {
                     >
                         Submit
                     </Button>
+                    <ToastContainer />
                 </Box>
             </form>
         </Box>
