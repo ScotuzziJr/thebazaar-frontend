@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Button, TextField, Typography, createTheme, ThemeProvider } from '@mui/material'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import HeaderLogin from './HeaderLogin';
 
@@ -18,6 +18,8 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
+
     const handleLogin = async () => {
         try {
             const login = await fetch("http://localhost:8000/api/users/login", {
@@ -32,7 +34,8 @@ const Login = () => {
             })
             .then((res) => {
                 if(res.status === 200) {
-                    toast.success("Successfull login");
+                    // toast.success("Successfull login");
+                    navigate("/home");
                 } else {
                     toast.warn("Invalid credentials");
                 }
